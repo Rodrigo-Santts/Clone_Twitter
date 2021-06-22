@@ -51,7 +51,7 @@ class Route extends Bootstrap {
       );
 
 		$routes['quem_seguir'] = array(
-      'route' => '/quem_seguir',
+         'route' => '/quem_seguir',
 			'controller' => 'AppController',
 			'action' => 'quemSeguir'
       );
@@ -60,6 +60,12 @@ class Route extends Bootstrap {
       'route' => '/acao',
 			'controller' => 'AppController',
 			'action' => 'acao'
+      );
+      
+		$routes['removerTweet'] = array(
+         'route' => '/removerTweet',
+			'controller' => 'AppController',
+			'action' => 'removerTweet'
       );
       
 		$this->setRoutes($routes);

@@ -70,28 +70,31 @@
 			</div>
 
          <?php for($i = 0; $i < count($this->view->tweets); $i++) { ?>
-
             <div class="row tweet">
                <div class="col">
                   <p><strong><?= $this->view->tweets[$i]['nome'] ?></strong>
-                     <span class="text text-muted">-
+                     <span class="text text-muted">
                         <small><?= $this->view->tweets[$i]['data'];?></small>
                      </span>
                   </p>
-
                   <p><?= $this->view->tweets[$i]['tweets']; ?></p>
-
                   <br />
-                  <form>
+
+               <!-- remove Tweet -->
+               <form method="POST" action="removerTweet?remover=<?= $this->view->tweets[$i]['id']?> ">
+                  <?php  if ($_SESSION['id'] == $this->view->tweets[$i]['id_usuario']){ ?>
                      <div class="col d-flex justify-content-end">
-                        <button type="submit" class="btn btn-danger"><small>Remover</small></button>
+                        <button type="submit" class="btn btn-danger">
+                           <small>Remover</small>
+                        </button>
                      </div>
+                  <?php }?>
                   </form>
+
                </div>
             </div>
          <?php }?>
 		</div>
-
 
 		<div class="col-md-3">
 			<div class="quemSeguir">

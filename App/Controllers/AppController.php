@@ -8,7 +8,6 @@ use MF\Model\Container;
 class AppController extends Action {
 
    public function timeline(){
-      session_start();
       $this->validaAutenticacao();
 
       $tweet = Container::getModel('Tweet');
@@ -18,7 +17,6 @@ class AppController extends Action {
    }
 
    public function tweet(){
-      session_start();
       $this->validaAutenticacao();
 
       $tweet = Container::getModel('Tweet');
@@ -29,7 +27,6 @@ class AppController extends Action {
 
    public function validaAutenticacao(){
       session_start();
-
       if (!isset($_SESSION['id']) || $_SESSION['id'] || !isset($_SESSION['nome']) || $_SESSION['nome'] == '') {
 
          return true;
@@ -63,15 +60,21 @@ class AppController extends Action {
       $usuario->__set('id', $_SESSION['id']);
 
       if ($acao == 'seguir'){
-         $usuario->seguirUsuario($id_usuario_seguindo);
+         $usuario->seguirUsuario($id_usuario_seguindo);  
 
       }else if ($acao == 'deixar_de_seguir'){
          $usuario->deixarSeguirUsuario($id_usuario_seguindo);
       }
-   }
+      header('Location: quem_seguir ');
+   } 
 
-   
-   
+   public function removerTweet(){
+      $this->validaAutenticacao();
+      $remover = Container::getModel('Usuario');
+      $remover->__set('id', $_GET['remover']);
+      $remover->removertt();
+      header('Location: timeline');
+   }
 }
 
 ?>

@@ -107,7 +107,14 @@ class Usuario extends Model {
       $stmt->execute();
       header('Location: quem_seguir');
       return true;
+   }
 
+   public function removertt(){
+      $query = "delete from twitter_clone.tweets where id = :id";
+      $stmt = $this->db->prepare($query);
+      $stmt->bindValue(':id', $this->__get('id'));
+      $stmt->execute();
+      return $this;
    }
 }
 ?>
